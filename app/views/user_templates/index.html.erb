@@ -22,7 +22,9 @@
       <%= a_user.username %>
     </td>
     <td>
-        show details
+        <a href="/users/<%= a_user.username%>">
+          Show details
+        </a>
     </td>
   </tr>
 <% end %>

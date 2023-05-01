@@ -4,21 +4,33 @@ class PhotosController < ApplicationController
 
     @list_of_photos = matching_photos.order({ :created_at => :desc})
 
-    render({ :template => "photos_templates/index.html.erb"})
+    render({ :template => "photo_templates/index.html.erb"})
   end
 
   def show
-    # parasms {"path_username"=>"anisa"}
-    #url_username = params.fetch("path_username")
+    # parasms {"path_id"=>"777"}
+    url_id = params.fetch("path_id")
 
-    #matching_usernames = User.where({ :username => url_username})
+    matching_photos = Photo.where({ :id => url_id})
 
-    #@the_user = matching_usernames.at(0)
+    @the_photo = matching_photos.at(0)
 
-    #if @the_user == nil
-     # redirect_to("/404")
-    #else
-     # render({ :template => "user_templates/show.html.erb"})
-    #end
+     render({ :template => "photo_templates/show.html.erb"})
+
+  end
+
+  def baii
+    # parasms {"path_id"=>"777"}
+    the_id = params.fetch("toast_id")
+
+    matching_photos = Photo.where({ :id => the_id})
+
+    the_photo = matching_photos.at(0)
+
+    the_photo.destroy
+
+    # render({ :template => "photo_templates/baii.html.erb"})
+
+    redirect_to("/photos")
   end
 end
